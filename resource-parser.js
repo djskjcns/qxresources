@@ -18,7 +18,10 @@ function parseResource(content) {
     const lines = content.split('\n');
     const result = lines.map(line => {
         line = line.trim();
-        if (line.includes('/')) {
+        if (line.startsWith('#')) {
+            // Ignore comment lines
+            return null;
+        } else if (line.includes('/')) {
             // Identify IPv4 and IPv6 CIDR
             if (line.includes(':')) {
                 // IPv6 CIDR
@@ -31,10 +34,10 @@ function parseResource(content) {
             // Identify hostnames
             return `host-suffix, ${line}, proxy`;
         } else {
-            // Return the original line if it doesn't match the pattern
-            return line;
+            // Discard lines that do not match the pattern
+            return null;
         }
-    });
+    }).filter(line => line !== null);
     return result.join('\n');
 }
 
