@@ -27,6 +27,9 @@ function parseResource(content) {
                 // IPv4 CIDR
                 return `ip-cidr, ${line}, proxy`;
             }
+        } else if (line.match(/^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
+            // Identify hostnames
+            return `host-suffix, ${line}, proxy`;
         } else {
             // Return the original line if it doesn't match the pattern
             return line;
