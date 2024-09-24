@@ -15,7 +15,8 @@ function parseResource(content) {
         } else if (line.startsWith('IP-ASN')) {
             // Convert IP-ASN to ip-asn format
             const parts = line.split(',');
-            return `ip-asn, ${parts[1].trim()}, proxy`;
+            const asnPart = parts[1].split(' ')[0].trim(); // Extract the ASN number only, ignoring comments
+            return `ip-asn, ${asnPart}, proxy`;
         } else if (line.includes('/')) {
             // Identify IPv4 and IPv6 CIDR
             if (line.includes(':')) {
