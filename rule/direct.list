@@ -1,0 +1,30 @@
+host-suffix, cn, direct
+
+host-suffix, live.com, direct
+host-suffix, baidu.com, direct
+host-suffix, bilibili.com, direct
+host-suffix, office.com, direct
+host-suffix, bing.com, direct
+host-suffix, microsoft.com, direct
+host-suffix, microsoftonline.com, direct
+host-suffix, qq.com, direct
+host-suffix, zhihu.com, direct
+host-suffix, bing.com, direct
+host-suffix, taobao.com, direct
+host-suffix, jd.com, direct
+host-suffix, weibo.com, direct
+host-suffix, douyin.com, direct
+host-suffix, 163.com, direct
+host-suffix, douyin.com, direct
+host-suffix, feishu.com, direct
+host-suffix, sohu.com, direct
+host-suffix, xiaohongshu.com, direct
+host-suffix, tencent.com, direct
+host-suffix, wechat.com, direct
+
+ip-cidr, 198.19.0.0/24, direct
+
+;samsung
+host-suffix, samsung.com, direct
+host-suffix, samsungosp.com, direct
+host-suffix, samsungapps.com, direct

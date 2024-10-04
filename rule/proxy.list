@@ -1,0 +1,42 @@
+host-suffix, facebook.com, proxy, force-remote-dns
+host-suffix, instagram.com, proxy, force-remote-dns
+host-suffix, x.com, proxy, force-remote-dns
+host-suffix, openai.com, proxy, force-remote-dns
+host-suffix, chatgpt.com, proxy, force-remote-dns
+host-suffix, reddit.com, proxy, force-remote-dns
+host-suffix, netflix.com, proxy, force-remote-dns
+host-suffix, wikipedia.org, proxy, force-remote-dns
+host-suffix, amazon.com, proxy, force-remote-dns
+host-suffix, yandex.com, proxy, force-remote-dns
+host-suffix, linkedin.com, proxy, force-remote-dns
+host-suffix, twitch.tv, proxy, force-remote-dns
+host-suffix, vk.com, proxy, force-remote-dns
+host-suffix, tiktok.com, proxy, force-remote-dns
+host-suffix, discord.com, proxy, force-remote-dns
+
+;dns
+host, chrome.cloudflare-dns.com, proxy, force-remote-dns
+
+;google & youtube
+host-suffix, ytimg.com, proxy, force-remote-dns
+host-suffix, google.com, proxy, force-remote-dns
+host-suffix, youtube.com, proxy, force-remote-dns
+host-suffix, googlevideo.com, proxy, force-remote-dns
+host-suffix, googleusercontent.com, proxy, force-remote-dns
+host-suffix, googleapis.com, PROXY, force-remote-dns
+
+;github
+host-suffix, github.com, proxy, force-remote-dns
+host-suffix, githubassets.com, proxy, force-remote-dns
+host-suffix, githubusercontent.com, proxy, force-remote-dns
+
+;nsfw
+host-suffix, pdude.link, proxy, force-remote-dns
+host-suffix, xvideos.com, proxy, force-remote-dns
+host-suffix, hitomi.la, proxy, force-remote-dns
+host-suffix, jable.tv, proxy, force-remote-dns
+host-suffix, missav.com, proxy, force-remote-dns
+host-suffix, phncdn.com, proxy, force-remote-dns
+host-suffix, pornhub.com, proxy, force-remote-dns
+host-suffix, theporndude.com, proxy, force-remote-dns
+host-suffix, pornhubpremium.com, proxy, force-remote-dns
