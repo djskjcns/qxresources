@@ -9,7 +9,7 @@ let parsedLines = [];
 
 // 正则表达式匹配
 const ipv4Regex = /^(\d{1,3}\.){3}\d{1,3}(\/\d+)?$/; // 匹配IPv4
-const ipv6Regex = /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}(\/\d+)?$/; // 匹配IPv6
+const ipv6Regex = /^(?:[0-9a-fA-F]{1,4}:){1,7}(?:[0-9a-fA-F]{1,4}|:)(\/\d+)?$/;
 const ipAsnRegex = /^IP-ASN,\d+$/; // 匹配IP-ASN,<数字>
 
 // 逐行处理
