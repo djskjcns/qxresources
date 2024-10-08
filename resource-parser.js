@@ -10,7 +10,7 @@ let parsedLines = [];
 // 正则表达式匹配
 const ipv4Regex = /^(\d{1,3}\.){3}\d{1,3}(\/\d+)?$/; // 匹配IPv4
 const ipv6Regex = /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}(\/\d+)?$/; // 匹配IPv6
-const asnRegex = /^AS\d+$/; // 匹配ASN
+const ipAsnRegex = /^IP-ASN,\d+$/; // 匹配IP-ASN,<数字>
 
 // 逐行处理
 lines.forEach(line => {
@@ -33,9 +33,9 @@ lines.forEach(line => {
     else if (ipv6Regex.test(line)) {
         parsedLines.push(`ip6-cidr, ${line}, proxy`);
     }
-    // 如果是ASN地址
-    else if (asnRegex.test(line)) {
-        parsedLines.push(`ip-asn, ${line}, proxy`);
+    // 如果是IP-ASN地址
+    else if (ipAsnRegex.test(line)) {
+        parsedLines.push(`${line}, proxy`);
     }
 });
 
