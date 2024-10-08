@@ -1,56 +1,46 @@
-/**
- * @fileoverview Example to parse the resource to the format of Quantumult X.
- *
- * @supported Quantumult X (v1.0.8-build253)
- */
+// 获取原始内容
+let content = $resource.content || "";
 
-// $resource, $notify(title, subtitle, message)
-// HTTP reqeust and persistent storage related APIs are not supported in resource parser.
+// 将内容切割成行
+let lines = content.split("\n");
 
-// $resource.link contains the original URL of the resource or the path if the resource is local.
-// $resource.content contains the response(UTF8) from the URL .
+// 存储解析后的内容
+let parsedLines = [];
 
-// $done({error : "error description"});
-// $done({content : "the modified content"});
+// 正则表达式匹配
+const ipv4Regex = /^(\d{1,3}\.){3}\d{1,3}(\/\d+)?$/; // 匹配IPv4
+const ipv6Regex = /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}(\/\d+)?$/; // 匹配IPv6
+const asnRegex = /^AS\d+$/; // 匹配ASN
 
-function parseResource(content) {
-    // Split content by lines
-    const lines = content.split('\n');
-    const result = lines.map(line => {
-        line = line.trim();
-        if (line.startsWith('#')) {
-            // Ignore comment lines
-            return null;
-        } else if (line.includes('/')) {
-            // Identify IPv4 and IPv6 CIDR
-            if (line.includes(':')) {
-                // IPv6 CIDR
-                return `ip6-cidr, ${line}, proxy`;
-            } else {
-                // IPv4 CIDR
-                return `ip-cidr, ${line}, proxy`;
-            }
-        } else if (line.match(/^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
-            // Identify hostnames
-            return `host-suffix, ${line}, proxy`;
-        } else {
-            // Discard lines that do not match the pattern
-            return null;
-        }
-    }).filter(line => line !== null);
-    return result.join('\n');
-}
+// 逐行处理
+lines.forEach(line => {
+    // 去除前后空格
+    line = line.trim();
 
-try {
-    // Get the original content
-    const originalContent = $resource.content;
+    // 移除行内注释（从'//'或'#'开始）
+    line = line.split("//")[0].split("#")[0].trim();
 
-    // Parse the content
-    const parsedContent = parseResource(originalContent);
+    // 忽略空行
+    if (line === "") {
+        return;
+    }
 
-    // Return the modified content
-    $done({ content: parsedContent });
-} catch (error) {
-    // Handle any errors
-    $done({ error: error.message });
-}
+    // 如果是IPv4地址
+    if (ipv4Regex.test(line)) {
+        parsedLines.push(`ip-cidr, ${line}, proxy`);
+    }
+    // 如果是IPv6地址
+    else if (ipv6Regex.test(line)) {
+        parsedLines.push(`ip6-cidr, ${line}, proxy`);
+    }
+    // 如果是ASN地址
+    else if (asnRegex.test(line)) {
+        parsedLines.push(`ip-asn, ${line}, proxy`);
+    }
+});
+
+// 将解析后的内容拼接成字符串
+let result = parsedLines.join("\n");
+
+// 返回最终结果
+$done({ content: result });
